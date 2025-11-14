@@ -1,0 +1,391 @@
+/* ===========================
+   STYLES.CSS - VERSIÓN ACTUALIZADA
+   =========================== */
+
+/* GENERAL */
+:root{
+  --accent-1: #d1c4ff;
+  --accent-2: #bbe3ff;
+  --glass-bg: rgba(255,255,255,0.72);
+  --card-glass: rgba(255,255,255,0.72);
+  --text-dark: #222;
+  --primary-dark: #111;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  background: #eefaff;
+  color: var(--text-dark);
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+  scroll-behavior: smooth;
+}
+
+/* HEADER / NAVBAR */
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 72px;
+  display: flex;
+  align-items: center;
+  z-index: 1100;
+  background: rgba(255,255,255,0.72);
+  backdrop-filter: blur(8px);
+  box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+}
+
+.nav-container{
+  width: 92%;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.nav-logo{
+  width: 66px;
+  height: auto;
+  transition: transform .25s;
+}
+
+nav ul{
+  list-style: none;
+  display:flex;
+  gap: 20px;
+  align-items:center;
+}
+
+nav a{
+  display:inline-block;
+  text-decoration:none;
+  padding:8px 18px;
+  border-radius:20px;
+  background: linear-gradient(90deg, var(--accent-1), var(--accent-2));
+  color: #222;
+  font-weight:600;
+  transition: all .22s ease;
+}
+
+nav a:hover, nav a.active {
+  transform: scale(1.06);
+  background: linear-gradient(90deg,#b49bff,#84c7ff);
+}
+
+/* espacio para que el header no cubra el top de cada sección */
+section { scroll-margin-top: 92px; }
+
+/* SECCIONES - cada frame casi pantalla completa */
+.seccion{
+  min-height: calc(100vh - 92px); /* pantalla completa menos header */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 48px 28px;
+  text-align: center;
+}
+
+/* BACKGROUNDS (mantén tus imágenes en img/) */
+.fondo {
+  background: url("img/fondo1.jpg") no-repeat center/cover;
+  background-size: cover;
+}
+.fondo2 {
+  background: url("img/fondo2.jpg") no-repeat center/cover;
+  background-size: cover;
+}
+
+/* LOGO PRINCIPAL GRANDE (INICIO) */
+.logo-grande {
+  width: 360px;
+  max-width: 80%;
+  height: auto;
+  margin-bottom: 24px;
+  animation: logoZoom .9s cubic-bezier(.2,.9,.2,1);
+  filter: drop-shadow(0 8px 30px rgba(0,0,0,0.25));
+}
+
+@keyframes logoZoom {
+  from { transform: scale(.35); opacity: 0; }
+  to   { transform: scale(1); opacity: 1; }
+}
+
+/* TITULOS Y LISTA PRINCIPAL */
+.seccion h1, .seccion h2 {
+  margin: 12px 0 14px;
+  color: #083047;
+  text-shadow: 0 0 8px rgba(0,0,0,0.04);
+}
+
+.lista-iconos {
+  list-style: none;
+  margin-top: 12px;
+  display: inline-block;
+  text-align: left;
+  padding-left: 6px;
+}
+
+.lista-iconos li {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 20px;
+  margin-bottom: 8px;
+  font-weight: 700;
+  color: #053243;
+}
+
+/* GRID UNIFICADO (SERVICIOS + ACCESORIOS) */
+.grid-servicios {
+  display: grid;
+  gap: 22px;
+  margin-top: 30px;
+  width: 100%;
+  max-width: 1200px;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  align-items: start;
+  padding: 0 10px;
+}
+
+.card {
+  background: rgba(255,255,255,0.85);
+  border-radius: 12px;
+  padding: 10px;
+  overflow: hidden;
+  transition: transform .35s ease, box-shadow .35s ease;
+  backdrop-filter: blur(6px);
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+  align-items:center;
+}
+
+.card img {
+  width: 100%;
+  border-radius: 8px;
+  display:block;
+  object-fit: cover;
+  height: 160px;
+  transition: transform .35s ease;
+}
+
+.card p {
+  margin-top: 6px;
+  font-weight: 700;
+  color: #033847;
+  text-align:center;
+}
+
+.card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 18px 40px rgba(3,56,71,0.14);
+}
+
+.card:hover img { transform: scale(1.06); }
+
+/* SOBRE NOSOTROS (MISION + VISION) */
+.texto-nosotros {
+  max-width: 880px;
+  margin: 12px auto;
+  color: #073742;
+  font-size: 1.05rem;
+  line-height: 1.55;
+}
+
+.mv-container {
+  display: flex;
+  gap: 18px;
+  margin-top: 22px;
+  width: 100%;
+  max-width: 1000px;
+  justify-content: center;
+  padding: 0 12px;
+}
+
+.mv-card {
+  background: linear-gradient(180deg, rgba(255,255,255,0.92), rgba(255,255,255,0.86));
+  border-radius: 12px;
+  padding: 18px;
+  flex: 1 1 320px;
+  box-shadow: 0 10px 28px rgba(3,56,71,0.06);
+  color: #02333a;
+}
+
+.mv-card h3 {
+  margin-bottom: 10px;
+  color: #024b54;
+}
+
+/* FORMULARIO */
+.formulario {
+  display:flex;
+  flex-direction:column;
+  gap: 12px;
+  width: 360px;
+  max-width: 92%;
+  margin: 18px auto 8px;
+}
+
+.formulario input, .formulario textarea {
+  padding: 12px;
+  border-radius: 10px;
+  border: none;
+  background: #0d1b1f;
+  color: #fff;
+  outline: none;
+  transition: box-shadow .18s ease, background .18s ease;
+  resize: none;
+}
+
+.formulario input:focus, .formulario textarea:focus {
+  box-shadow: 0 0 14px rgba(0,160,200,0.18);
+  background: #122426;
+}
+
+.formulario button {
+  padding: 12px;
+  border-radius: 12px;
+  border: none;
+  background: #052e33;
+  color: #fff;
+  cursor: pointer;
+  font-weight: 700;
+  transition: transform .15s ease, box-shadow .15s;
+}
+
+.formulario button:hover { transform: translateY(-3px); box-shadow: 0 10px 24px rgba(3,56,71,0.12); }
+
+/* FOOTER */
+footer {
+  text-align:center;
+  padding: 20px;
+  background: #0b1a1d;
+  color: #fff;
+  margin-top: 12px;
+}
+
+/* WHATSAPP BUTTON */
+.whatsapp-btn {
+  position: fixed;
+  bottom: 22px;
+  right: 22px;
+  background: #25d366;
+  color: white;
+  font-size: 26px;
+  padding: 12px 14px;
+  border-radius: 50%;
+  text-decoration: none;
+  box-shadow: 0 8px 22px rgba(2,90,62,0.18);
+  transition: transform .18s ease;
+}
+.whatsapp-btn:hover { transform: scale(1.06); }
+
+/* ANIMACIONES REVEAL (mantener) */
+.reveal {
+  opacity: 0;
+  transform: translateY(32px);
+  transition: all 0.9s cubic-bezier(.2,.9,.2,1);
+}
+.reveal.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* RESPONSIVE ADAPTIVE */
+@media (max-width: 992px) {
+  .logo-grande { width: 320px; }
+  .nav-logo { width: 56px; }
+  .mv-container { flex-direction: column; gap: 12px; }
+  .mv-card { width: 100%; }
+}
+
+@media (max-width: 680px) {
+  header { height: 64px; }
+  .nav-container { width: 95%; }
+  nav ul { gap: 10px; }
+  nav a { padding: 6px 12px; font-size: 0.95rem; }
+  .logo-grande { width: 220px; margin-bottom: 16px; }
+  .seccion { padding: 28px 18px; min-height: calc(100vh - 64px); }
+  .grid-servicios { gap: 14px; grid-template-columns: repeat(auto-fit, minmax(160px,1fr)); }
+  .card img { height: 128px; }
+  .lista-iconos li { font-size: 18px; }
+  .formulario { width: 92%; }
+}
+
+/* pequeña mejora visual cuando el header tiene scroll (opcional js) */
+.header-scrolled {
+  background: rgba(255,255,255,0.85) !important;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.12) !important;
+}
+/* ===== LOGO DENTRO DE SOBRE NOSOTROS ===== */
+.logo-nosotros {
+    width: 220px;
+    max-width: 70%;
+    margin: 10px auto 22px;
+    display: block;
+    filter: drop-shadow(0 6px 20px rgba(0,0,0,0.22));
+    animation: logoZoom .9s cubic-bezier(.2,.9,.2,1);
+}
+
+
+/* ===== TITULO DE VALORES ===== */
+.valores-titulo {
+    margin-top: 46px;
+    font-size: 2rem;
+    color: #053243;
+    text-shadow: 0 0 8px rgba(0,0,0,0.05);
+}
+
+
+/* ===== GRID DE VALORES ===== */
+.valores-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 22px;
+    margin-top: 24px;
+    width: 100%;
+    max-width: 900px;
+    padding: 0 16px;
+}
+
+
+/* ===== TARJETAS DE VALORES ===== */
+.valor-card {
+    background: rgba(255,255,255,0.85);
+    backdrop-filter: blur(6px);
+    border-radius: 14px;
+    padding: 28px 18px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    font-weight: 700;
+    color: #04343e;
+    box-shadow: 0 8px 26px rgba(3,56,71,0.10);
+    transition: transform .35s ease, box-shadow .35s ease;
+}
+
+.valor-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 16px 34px rgba(3,56,71,0.16);
+}
+
+.valor-card .emoji {
+    font-size: 40px;
+}
+
+/* ===== RESPONSIVE PARA VALORES ===== */
+@media (max-width: 680px) {
+    .valores-titulo {
+        margin-top: 36px;
+        font-size: 1.6rem;
+    }
+
+    .valor-card {
+        padding: 22px 14px;
+    }
+}
+
