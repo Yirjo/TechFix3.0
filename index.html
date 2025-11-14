@@ -13,8 +13,11 @@
     <!-- ===== NAVBAR ===== -->
     <header>
         <div class="nav-container">
+
+            <!-- LOGO DEL MENÚ -->
             <img src="img/logo.png" class="nav-logo" alt="Logo TechFix">
 
+            <!-- MENÚ DESKTOP -->
             <nav>
                 <ul>
                     <li><a href="#inicio" class="nav-link">Inicio</a></li>
@@ -23,7 +26,26 @@
                     <li><a href="#contacto" class="nav-link">Contáctanos</a></li>
                 </ul>
             </nav>
+
+            <!-- BOTÓN HAMBURGUESA (MÓVIL) -->
+            <div class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+
         </div>
+
+        <!-- MENÚ MÓVIL DESPLEGABLE -->
+        <div class="nav-mobile" id="navMobile">
+            <ul>
+                <li><a href="#inicio" class="nav-link">Inicio</a></li>
+                <li><a href="#servicios" class="nav-link">Servicios</a></li>
+                <li><a href="#nosotros" class="nav-link">Sobre nosotros</a></li>
+                <li><a href="#contacto" class="nav-link">Contáctanos</a></li>
+            </ul>
+        </div>
+
     </header>
 
     <!-- ===== INICIO ===== -->
@@ -153,10 +175,37 @@
     </footer>
 
     <!-- WhatsApp -->
-    <a href="https://wa.me/573126298250" target="_blank" class="whatsapp-btn">
-        💬
-    </a>
+    <a href="https://wa.me/573126298250" target="_blank" class="whatsapp-btn">💬</a>
 
-    <script src="script.js"></script>
+    <!-- ===== JS PRINCIPAL ===== -->
+    <script>
+        /* ===== MENÚ HAMBURGUESA ===== */
+        const hamburger = document.getElementById('hamburger');
+        const navMobile = document.getElementById('navMobile');
+
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            navMobile.classList.toggle('active');
+        });
+
+        /* ===== ANIMACIÓN SCROLL REVEAL ===== */
+        const revealElements = document.querySelectorAll('.reveal');
+
+        const revealOnScroll = () => {
+            const trigger = window.innerHeight * 0.85;
+
+            revealElements.forEach(el => {
+                const rect = el.getBoundingClientRect().top;
+
+                if (rect < trigger) {
+                    el.classList.add('active');
+                }
+            });
+        };
+
+        window.addEventListener('scroll', revealOnScroll);
+        revealOnScroll();
+    </script>
+
 </body>
 </html>

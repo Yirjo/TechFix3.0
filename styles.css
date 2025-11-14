@@ -1,5 +1,5 @@
 /* ===========================
-   STYLES.CSS - VERSIÓN ACTUALIZADA
+   STYLES.CSS - VERSIÓN ACTUALIZADA RESPONSIVE
    =========================== */
 
 /* GENERAL */
@@ -20,6 +20,7 @@ body {
   -webkit-font-smoothing:antialiased;
   -moz-osx-font-smoothing:grayscale;
   scroll-behavior: smooth;
+  overflow-x: hidden;
 }
 
 /* HEADER / NAVBAR */
@@ -74,12 +75,12 @@ nav a:hover, nav a.active {
   background: linear-gradient(90deg,#b49bff,#84c7ff);
 }
 
-/* espacio para que el header no cubra el top de cada sección */
+/* espacio del header */
 section { scroll-margin-top: 92px; }
 
-/* SECCIONES - cada frame casi pantalla completa */
+/* SECCIONES */
 .seccion{
-  min-height: calc(100vh - 92px); /* pantalla completa menos header */
+  min-height: calc(100vh - 92px);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -88,17 +89,15 @@ section { scroll-margin-top: 92px; }
   text-align: center;
 }
 
-/* BACKGROUNDS (mantén tus imágenes en img/) */
+/* BACKGROUNDS – NO MODIFICADO */
 .fondo {
   background: url("img/fondo1.jpg") no-repeat center/cover;
-  background-size: cover;
 }
 .fondo2 {
   background: url("img/fondo2.jpg") no-repeat center/cover;
-  background-size: cover;
 }
 
-/* LOGO PRINCIPAL GRANDE (INICIO) */
+/* LOGO PRINCIPAL */
 .logo-grande {
   width: 360px;
   max-width: 80%;
@@ -113,13 +112,14 @@ section { scroll-margin-top: 92px; }
   to   { transform: scale(1); opacity: 1; }
 }
 
-/* TITULOS Y LISTA PRINCIPAL */
+/* TITULOS */
 .seccion h1, .seccion h2 {
   margin: 12px 0 14px;
   color: #083047;
   text-shadow: 0 0 8px rgba(0,0,0,0.04);
 }
 
+/* LISTA ICONOS */
 .lista-iconos {
   list-style: none;
   margin-top: 12px;
@@ -138,7 +138,7 @@ section { scroll-margin-top: 92px; }
   color: #053243;
 }
 
-/* GRID UNIFICADO (SERVICIOS + ACCESORIOS) */
+/* GRID SERVICIOS */
 .grid-servicios {
   display: grid;
   gap: 22px;
@@ -186,7 +186,7 @@ section { scroll-margin-top: 92px; }
 
 .card:hover img { transform: scale(1.06); }
 
-/* SOBRE NOSOTROS (MISION + VISION) */
+/* SOBRE NOSOTROS */
 .texto-nosotros {
   max-width: 880px;
   margin: 12px auto;
@@ -237,7 +237,6 @@ section { scroll-margin-top: 92px; }
   color: #fff;
   outline: none;
   transition: box-shadow .18s ease, background .18s ease;
-  resize: none;
 }
 
 .formulario input:focus, .formulario textarea:focus {
@@ -256,7 +255,10 @@ section { scroll-margin-top: 92px; }
   transition: transform .15s ease, box-shadow .15s;
 }
 
-.formulario button:hover { transform: translateY(-3px); box-shadow: 0 10px 24px rgba(3,56,71,0.12); }
+.formulario button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 24px rgba(3,56,71,0.12);
+}
 
 /* FOOTER */
 footer {
@@ -267,7 +269,7 @@ footer {
   margin-top: 12px;
 }
 
-/* WHATSAPP BUTTON */
+/* WHATSAPP */
 .whatsapp-btn {
   position: fixed;
   bottom: 22px;
@@ -283,7 +285,7 @@ footer {
 }
 .whatsapp-btn:hover { transform: scale(1.06); }
 
-/* ANIMACIONES REVEAL (mantener) */
+/* ANIMACIONES */
 .reveal {
   opacity: 0;
   transform: translateY(32px);
@@ -294,98 +296,107 @@ footer {
   transform: translateY(0);
 }
 
-/* RESPONSIVE ADAPTIVE */
+/* CORRECCIÓN IMPORTANTE – MENÚ MÓVIL */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 6px;
+  cursor: pointer;
+}
+.hamburger span {
+  width: 28px;
+  height: 3px;
+  background: #000;
+  border-radius: 3px;
+}
+
+.nav-mobile {
+  display: none;
+  position: absolute;
+  top: 72px;
+  left: 0;
+  right: 0;
+  background: rgba(255,255,255,0.92);
+  padding: 20px 0;
+  text-align: center;
+}
+
+.nav-mobile ul {
+  list-style: none;
+}
+
+.nav-mobile a {
+  display: block;
+  padding: 12px 0;
+  font-size: 1.1rem;
+  text-decoration: none;
+  color: #222;
+}
+
+/* ===== RESPONSIVE ===== */
+
 @media (max-width: 992px) {
+  nav { display: none; }   /* ⬅ OCULTA EL MENÚ DE ESCRITORIO */
+
+  .hamburger { display: flex; }  /* ⬅ MUESTRA EL HAMBURGUESA */
+
+  .nav-mobile.active { display: block; }
+
   .logo-grande { width: 320px; }
   .nav-logo { width: 56px; }
   .mv-container { flex-direction: column; gap: 12px; }
-  .mv-card { width: 100%; }
 }
 
 @media (max-width: 680px) {
   header { height: 64px; }
   .nav-container { width: 95%; }
-  nav ul { gap: 10px; }
-  nav a { padding: 6px 12px; font-size: 0.95rem; }
-  .logo-grande { width: 220px; margin-bottom: 16px; }
+
+  .logo-grande { width: 220px; }
+
   .seccion { padding: 28px 18px; min-height: calc(100vh - 64px); }
   .grid-servicios { gap: 14px; grid-template-columns: repeat(auto-fit, minmax(160px,1fr)); }
   .card img { height: 128px; }
   .lista-iconos li { font-size: 18px; }
-  .formulario { width: 92%; }
 }
 
-/* pequeña mejora visual cuando el header tiene scroll (opcional js) */
-.header-scrolled {
-  background: rgba(255,255,255,0.85) !important;
-  box-shadow: 0 6px 18px rgba(0,0,0,0.12) !important;
-}
-/* ===== LOGO DENTRO DE SOBRE NOSOTROS ===== */
+/* LOGO NOSOTROS */
 .logo-nosotros {
-    width: 220px;
-    max-width: 70%;
-    margin: 10px auto 22px;
-    display: block;
-    filter: drop-shadow(0 6px 20px rgba(0,0,0,0.22));
-    animation: logoZoom .9s cubic-bezier(.2,.9,.2,1);
+  width: 220px;
+  max-width: 70%;
+  margin: 10px auto 22px;
+  display: block;
+  filter: drop-shadow(0 6px 20px rgba(0,0,0,0.22));
+  animation: logoZoom .9s cubic-bezier(.2,.9,.2,1);
 }
 
-
-/* ===== TITULO DE VALORES ===== */
+/* VALORES */
 .valores-titulo {
-    margin-top: 46px;
-    font-size: 2rem;
-    color: #053243;
-    text-shadow: 0 0 8px rgba(0,0,0,0.05);
+  margin-top: 46px;
+  font-size: 2rem;
+  color: #053243;
 }
 
-
-/* ===== GRID DE VALORES ===== */
 .valores-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-    gap: 22px;
-    margin-top: 24px;
-    width: 100%;
-    max-width: 900px;
-    padding: 0 16px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 22px;
+  margin-top: 24px;
+  width: 100%;
+  max-width: 900px;
+  padding: 0 16px;
 }
 
-
-/* ===== TARJETAS DE VALORES ===== */
 .valor-card {
-    background: rgba(255,255,255,0.85);
-    backdrop-filter: blur(6px);
-    border-radius: 14px;
-    padding: 28px 18px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 12px;
-    font-weight: 700;
-    color: #04343e;
-    box-shadow: 0 8px 26px rgba(3,56,71,0.10);
-    transition: transform .35s ease, box-shadow .35s ease;
+  background: rgba(255,255,255,0.85);
+  backdrop-filter: blur(6px);
+  border-radius: 14px;
+  padding: 28px 18px;
+  text-align: center;
+  font-weight: 700;
+  color: #04343e;
 }
 
-.valor-card:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 16px 34px rgba(3,56,71,0.16);
-}
-
-.valor-card .emoji {
-    font-size: 40px;
-}
-
-/* ===== RESPONSIVE PARA VALORES ===== */
+/* RESPONSIVE VALORES */
 @media (max-width: 680px) {
-    .valores-titulo {
-        margin-top: 36px;
-        font-size: 1.6rem;
-    }
-
-    .valor-card {
-        padding: 22px 14px;
-    }
+  .valores-titulo { font-size: 1.6rem; margin-top: 36px; }
 }
-
